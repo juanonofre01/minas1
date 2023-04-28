@@ -89,6 +89,7 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.ipadx = 70;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 5.0;
         gridBagConstraints.insets = new java.awt.Insets(1, 100, 0, 0);
         jPanel1.add(jTextField1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
