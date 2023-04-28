@@ -1,66 +1,59 @@
-
-
 package com.mycompany.buscaminas;
 
 /**
- * Integrantes Juan Goyes
- * Josue Cardona
- * Esneyder Ibarra
- * Juan Achicanoy
- * Esteban Riacos
- * Nicolas Benavides
+ * Integrantes Juan Goyes Josue Cardona Esneyder Ibarra Juan Achicanoy Esteban
+ * Riacos Nicolas Benavides
  *
  */
 /**
- * InterazPrincipal 
- * 
+ * InterazPrincipal
+ *
  * interfaz donde se ejecuta la jugabilidad del juego
  */
-
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 public class VentanaPrincipal extends javax.swing.JFrame implements ActionListener {
 
     static VentanaPrincipal getVentanaPrincipal() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-
     int miliseg = 0;
     int seg = 0;
     int min = 0;
     int hor = 0;
     boolean estado = false;
-    
-    int contadorMinas=0;
-    int numeroCuadros=0;
-    int contador=0;
+
+    int contadorMinas = 0;
+    int numeroCuadros = 0;
+    int contador = 0;
     private Object content;
-    
-    /** Creates new form VentanaPrincipal */
-    public VentanaPrincipal () {
+
+    /**
+     * Creates new form VentanaPrincipal
+     */
+    public VentanaPrincipal() {
         initComponents();
-        
+
     }
-    
-    public void actionPerformed(ActionEvent e){
-        
-        Cuadro temp2= (Cuadro) e.getSource();
+
+    public void actionPerformed(ActionEvent e) {
+
+        Cuadro temp2 = (Cuadro) e.getSource();
         if (temp2.estaMinado()) {
             javax.swing.JOptionPane.showMessageDialog(this, "le diste a una mina, perdedor");
-            this.contador=0;
-        }
-        else{
+            this.contador = 0;
+        } else {
             temp2.setBackground(Color.GREEN);
             contador++;
-            if((numeroCuadros- contadorMinas)==contador){
+            if ((numeroCuadros - contadorMinas) == contador) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Ganaste");
             }
         }
-        
-    }
 
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -208,89 +201,96 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
     private void ColumnasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColumnasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ColumnasActionPerformed
-
+    /**
+     * Metodo contador
+     * @param evt 
+     * Este metodo sirve para contar el tiempo que se ejecuta al
+     * jugar
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         estado = true;
-        Thread hilo = new Thread(){
-            public void run (){
-                for (;;){
-                    if (estado == true){
+        Thread hilo = new Thread() {
+            public void run() {
+                for (;;) {
+                    if (estado == true) {
                         try {
-                            sleep (1);
-                            if (miliseg >=1000){
+                            sleep(1);
+                            if (miliseg >= 1000) {
                                 miliseg = 0;
-                                seg ++;
+                                seg++;
                             }
-                            if(seg >= 60){
-                                miliseg=0;
-                                seg =0;
-                                min ++;
+                            if (seg >= 60) {
+                                miliseg = 0;
+                                seg = 0;
+                                min++;
                             }
-                            if(min >= 60){
+                            if (min >= 60) {
                                 miliseg = 0;
                                 seg = 0;
                                 min = 0;
-                                hor ++;
-                                
+                                hor++;
+
                             }
-                            lb1.setText(hor + " : " + min + " : "+ seg +" : ");
-                            miliseg ++;
-                        }catch(Exception e){
-                            
+                            lb1.setText(hor + " : " + min + " : " + seg + " : ");
+                            miliseg++;
+                        } catch (Exception e) {
+
                         }
-                    }else{
+                    } else {
                         break;
                     }
                 }
             }
-            
+
         };
-     hilo.start();
-    
+        hilo.start();
+
         iniciar();
         this.paintAll(this.getGraphics());
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
+    }//GEN-LAST:event_jButton1ActionPerformed
+    /**
+     * metodo para hacer visible el mensaje emergente "perdedor"
+     *
+     * @param evt
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         new Perdedor().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    /**
+     * Metodo para hacer visible el mensaje emergente "ganador"
+     *
+     * @param evt
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         new Ganador().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
     /**
-     * @param args the command line arguments
+     * Metodo iniciar Metodo para crear las filas y columnas que digite el
+     * usuario
      */
-   
-    
-    
-    
-    
-    private void iniciar(){
+    private void iniciar() {
         this.panel_juego.removeAll();
         int nFilas, nCol;
-        nFilas=Integer.parseInt(this.Filas.getText());
-        nCol=Integer.parseInt(this.Columnas.getText());
-        
-        this.panel_juego.setLayout(new java.awt.GridLayout(nFilas,nCol));
-        
-        this.numeroCuadros=nFilas*nCol;
-        this.contadorMinas=0;
-        
-        for(int i=0; i<nFilas; i++){
-            for(int j=0; j < nCol; j++){
-                
+        nFilas = Integer.parseInt(this.Filas.getText());
+        nCol = Integer.parseInt(this.Columnas.getText());
+
+        this.panel_juego.setLayout(new java.awt.GridLayout(nFilas, nCol));
+
+        this.numeroCuadros = nFilas * nCol;
+        this.contadorMinas = 0;
+
+        for (int i = 0; i < nFilas; i++) {
+            for (int j = 0; j < nCol; j++) {
+
                 Cuadro temp = new Cuadro();
                 temp.addActionListener(this);
-                if(temp.estaMinado())
+                if (temp.estaMinado()) {
                     this.contadorMinas++;
+                }
                 temp.setVisible(true);
                 this.panel_juego.add(temp);
             }
