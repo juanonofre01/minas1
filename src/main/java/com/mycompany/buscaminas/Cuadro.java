@@ -1,13 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.buscaminas;
 
 import javax.swing.JButton;
 /**
- *
- * @author PC
+ * integrantes
+ * Juan Goyes 
+ * Josue Cardona
+ * Esneyder Ibarra
+ * Juan Achicanoy
+ * Esteban Riacos
+ * Nicolas Benavides
+ * 
+ */
+
+/**
+ * Metodo para mostrar el cuadro donde se encuentran las minas 
+ * 
  */
 public class Cuadro extends JButton{
     private boolean mina;

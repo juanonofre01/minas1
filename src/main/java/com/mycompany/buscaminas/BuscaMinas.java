@@ -1,15 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+
 
 package com.mycompany.buscaminas;
-
 /**
- *
- * @author PC
+ * integrantes
+ * Juan Goyes 
+ * Josue Cardona
+ * Esneyder Ibarra
+ * Juan Achicanoy
+ * Esteban Riacos
+ * Nicolas Benavides
+ * 
  */
-public class BuscaMinas {
 
+public class BuscaMinas {
+/**
+ * Metodo main donde se ejecuta el juego
+ * @param args 
+ */
     public static void main(String[] args) {
         
         Login v = new Login();
