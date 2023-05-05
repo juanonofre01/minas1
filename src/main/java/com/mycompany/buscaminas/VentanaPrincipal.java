@@ -19,7 +19,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
     static VentanaPrincipal getVentanaPrincipal() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    int puntaje = 0;
     int miliseg = 0;
     int seg = 0;
     int min = 0;
@@ -68,6 +68,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         lb1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         panel_juego = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,6 +113,8 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
             }
         });
 
+        jLabel3.setText("Numero de intentos:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -125,8 +128,10 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Columnas, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -150,7 +155,8 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Filas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Columnas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jLabel3))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -203,12 +209,25 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
     }//GEN-LAST:event_ColumnasActionPerformed
     /**
      * Metodo contador
-     * @param evt 
-     * Este metodo sirve para contar el tiempo que se ejecuta al
+     *
+     * @param evt Este metodo sirve para contar el tiempo que se ejecuta al
      * jugar
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+        /**
+         * Metodo puntaje Intentamois que el puntaje suba al presionar un lugar
+         * donde no este minado
+         */
+        puntaje = 0;
+        jButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                iniciar();
+                puntaje++;
+
+                jLabel3.setText("Numero de Intentos: " + puntaje);
+            }
+        });
         estado = true;
         Thread hilo = new Thread() {
             public void run() {
@@ -279,7 +298,6 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         nCol = Integer.parseInt(this.Columnas.getText());
 
         this.panel_juego.setLayout(new java.awt.GridLayout(nFilas, nCol));
-
         this.numeroCuadros = nFilas * nCol;
         this.contadorMinas = 0;
 
@@ -293,6 +311,9 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
                 }
                 temp.setVisible(true);
                 this.panel_juego.add(temp);
+                {
+                }
+
             }
         }
     }
@@ -305,6 +326,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lb1;
     private javax.swing.JPanel panel_juego;
